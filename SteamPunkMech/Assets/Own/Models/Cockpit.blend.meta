@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ba1d748d80892bb4ba32786b90356867
-timeCreated: 1520099455
+guid: 83893829449c5e04c9da7ed4f29d8f5b
+timeCreated: 1520420818
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -11,7 +11,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Plane
-    6400000: //RootNode
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -46,17 +45,17 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
-    importVisibility: 0
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     keepQuads: 0
-    weldVertices: 0
+    weldVertices: 1
     preserveHierarchy: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
