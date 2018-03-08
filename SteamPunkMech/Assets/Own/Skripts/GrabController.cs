@@ -42,11 +42,7 @@ public class GrabController : MonoBehaviour {
                     if (heldObject == null && col.GetComponent<HeldObject>() && col.GetComponent<HeldObject>().parent == null)
                     {
                         heldObject = col.gameObject;
-                        heldObject.transform.parent = transform;
-                        heldObject.transform.localPosition = Vector3.zero;
-                        heldObject.transform.localRotation = Quaternion.identity;
-                        heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                        heldObject.GetComponent<HeldObject>().parent = controller;
+                        heldObject.GetComponent<GrabbableObject>().grab(gameObject);
                     }
                 }
             }
