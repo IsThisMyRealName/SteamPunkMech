@@ -22,27 +22,26 @@ public class GrabController : MonoBehaviour {
         if (heldObject)
         {
             simulator.velocity = (transform.position - simulator.position) * 50f;
-            if (controller.gripButtonUp)
+            heldObject.GetComponent<GrabbableObject>().move(gameObject); 
+            if (controller.triggerButtonUp)
             {
-                heldObject.transform.parent = null;
-                heldObject.GetComponent<Rigidbody>().isKinematic = false;
-                heldObject.GetComponent<Rigidbody>().velocity = simulator.velocity;
-                heldObject.GetComponent<HeldObject>().parent = null;
+                heldObject.GetComponent<GrabbableObject>().letGo(simulator.velocity);
                 heldObject = null;
             }
         }
         else
         {
-            if (controller.gripButtonPressed)
+            if (controller.triggerButtonPressed)
             {
                 Collider[] cols = Physics.OverlapSphere(transform.position, 0.1f);
 
                 foreach(Collider col in cols)
                 {
-                    if (heldObject == null && col.GetComponent<HeldObject>() && col.GetComponent<HeldObject>().parent == null)
+                    if (heldObject == null && (col.GetComponent<ThrowableObject>() || col.GetComponent<MoveableObject>()))
                     {
                         heldObject = col.gameObject;
                         heldObject.GetComponent<GrabbableObject>().grab(gameObject);
+                        Debug.Log("Object has been grabbed.");
                     }
                 }
             }

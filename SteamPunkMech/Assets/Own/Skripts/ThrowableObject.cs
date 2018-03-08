@@ -13,14 +13,16 @@ public class ThrowableObject : MonoBehaviour, GrabbableObject {
         GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    public void move()
+    public void move(GameObject controller)
     {
-        throw new NotImplementedException();
+        
     }
 
-    public void letGo()
+    public void letGo(Vector3 velocity)
     {
-        throw new NotImplementedException();
+        transform.parent = null;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().velocity = velocity;
     }
 
 }
