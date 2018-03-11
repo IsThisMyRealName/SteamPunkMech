@@ -18,7 +18,7 @@ public class GrabController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (heldObject)
         {
             simulator.velocity = (transform.position - simulator.position) * 50f;
@@ -37,11 +37,15 @@ public class GrabController : MonoBehaviour {
 
                 foreach(Collider col in cols)
                 {
-                    if (heldObject == null && (col.GetComponent<ThrowableObject>() || col.GetComponent<MoveableObject>()))
+                    foreach (var script in col.gameObject.GetComponents<MonoBehaviour>())
                     {
-                        heldObject = col.gameObject;
-                        heldObject.GetComponent<GrabbableObject>().grab(gameObject);
-                        Debug.Log("Object has been grabbed.");
+                        if (script is GrabbableObject && heldObject == null)
+                        {
+                            heldObject = col.gameObject;
+                            heldObject.GetComponent<GrabbableObject>().grab(gameObject);
+                            Debug.Log("Object has been grabbed.");
+                        }
+
                     }
                 }
             }

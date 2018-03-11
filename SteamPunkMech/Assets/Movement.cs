@@ -24,7 +24,6 @@ public class Movement : MonoBehaviour
 	{
 
 	    rightPushPower = -(rightLeverLastAngle - rightLever.localEulerAngles.x);
-        Debug.Log(rightLever.localEulerAngles);
 	    if (rightPushPower > .5f)
 	    {
 	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * rightPushPower), transform.TransformPoint(new Vector3(50, 0, 0)));
