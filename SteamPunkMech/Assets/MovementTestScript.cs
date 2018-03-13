@@ -6,7 +6,8 @@ public class MovementTestScript : MonoBehaviour {
 
     // Update is called once per frame
     public float pushPower = 25;
-	void Update () {
+
+    void Update () {
         if (Input.GetButton("Fire2"))
         {
             Debug.Log("Right button pressed");
@@ -20,6 +21,6 @@ public class MovementTestScript : MonoBehaviour {
 
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, transform.rotation.y, 0, transform.rotation.w), 30f * Time.deltaTime);
-
+        
     }
 }
