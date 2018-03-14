@@ -46,7 +46,6 @@ public class shootController : MonoBehaviour {
 
     private void fireShot()
     {
-        Debug.Log("Shoot!");
         GameObject g = Instantiate(shoot, shoot.transform.position, shoot.transform.rotation);
         g.SetActive(true);
         g.GetComponent<Rigidbody>().velocity = transform.up * shootPower;

@@ -53,7 +53,6 @@ public class WheelControl : MonoBehaviour, GrabbableObject {
         if(turnedAnglesDirection > 0)
         {
             turnedAngles += Quaternion.Angle(lastFrameRotation, targetAngle);
-            Debug.Log(turnedAngles);
         }
         if(turnedAnglesDirection < 0)
         {

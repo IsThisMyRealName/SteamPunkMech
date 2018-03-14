@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     public Transform rightLever;
     public Transform leftLever;
+    public Transform rightDirectionLever;
+    public Transform leftDirectionLever;
     private float rightLeverLastAngle;
     private float leftLeverLastAngle;
 
@@ -25,9 +27,28 @@ public class Movement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
-	    rightPushPower = -(rightLeverLastAngle - rightLever.localEulerAngles.x);
-	    if (rightPushPower > .5f)
+        float leftAngle = Mathf.Abs(leftDirectionLever.GetComponentInChildren<turnableLever>().upAngle);
+        float rightAngle = Mathf.Abs(rightDirectionLever.GetComponentInChildren<turnableLever>().upAngle);
+        rightPushPower = -(rightLeverLastAngle - rightLever.localEulerAngles.x);
+        if(leftDirection == -1 && leftAngle <= 25)
+        {
+            leftDirection = 1;
+            Debug.Log("Left walking Forwards");
+        }
+        if(leftDirection == 1 && leftAngle >= 155)
+        {
+            leftDirection = -1;
+            Debug.Log("Left walking Backwards");
+        }
+        if (rightDirection == -1 && rightAngle <= 25)
+        {
+            rightDirection = 1;
+        }
+        if (rightDirection == 1 && rightAngle >= 155)
+        {
+            rightDirection = -1;
+        }
+        if (rightPushPower > .5f)
 	    {
 	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * rightPushPower * rightDirection), transform.TransformPoint(new Vector3(50, 0, 0)));
 
