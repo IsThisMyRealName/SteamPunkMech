@@ -16,6 +16,11 @@ public class WandController : MonoBehaviour {
     private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
     private SteamVR_TrackedObject trackedObj;
 
+    private Valve.VR.EVRButtonId menuButton = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
+    public bool menuButtonDown = false;
+
+    public EnemyShotController enemy;
+
 	// Use this for initialization
 	void Start () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -29,6 +34,8 @@ public class WandController : MonoBehaviour {
             return;
         }
 
+        menuButtonDown = controller.GetPressDown(menuButton);
+
         gripButtonDown = controller.GetPressDown(gripButton);
         gripButtonUp = controller.GetPressUp(gripButton);
         gripButtonPressed = controller.GetPress(gripButton);
@@ -36,7 +43,12 @@ public class WandController : MonoBehaviour {
         triggerButtonDown = controller.GetPressDown(triggerButton);
         triggerButtonUp = controller.GetPressUp(triggerButton);
         triggerButtonPressed = controller.GetPress(triggerButton);
-
+        if (menuButtonDown)
+        {
+            Debug.Log("MenuButton pressed");
+            enemy.startAttacking();
+            
+        }
         if (gripButtonDown)
         {
             Debug.Log("Grip Button was just pressed");
