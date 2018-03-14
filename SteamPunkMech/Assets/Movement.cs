@@ -13,6 +13,9 @@ public class Movement : MonoBehaviour
     private float rightPushPower;
     private float leftPushPower;
 
+    public int leftDirection = 1;
+    public int rightDirection = 1;
+
     void Start()
     {
         rightLeverLastAngle = rightLever.localEulerAngles.x;
@@ -26,7 +29,7 @@ public class Movement : MonoBehaviour
 	    rightPushPower = -(rightLeverLastAngle - rightLever.localEulerAngles.x);
 	    if (rightPushPower > .5f)
 	    {
-	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * rightPushPower), transform.TransformPoint(new Vector3(50, 0, 0)));
+	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * rightPushPower * rightDirection), transform.TransformPoint(new Vector3(50, 0, 0)));
 
         }
         rightLeverLastAngle = rightLever.localEulerAngles.x;
@@ -34,7 +37,7 @@ public class Movement : MonoBehaviour
 	    leftPushPower = -(leftLeverLastAngle - leftLever.localEulerAngles.x);
 	    if (leftPushPower > .5f)
 	    {
-	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * leftPushPower), transform.TransformPoint(new Vector3(-50, 0, 0)));
+	        GetComponent<Rigidbody>().AddForceAtPosition(transform.TransformDirection(new Vector3(0, 0, 1) * pushPower * leftPushPower * leftDirection), transform.TransformPoint(new Vector3(-50, 0, 0)));
         }
 	    leftLeverLastAngle = leftLever.localEulerAngles.x;
     }
